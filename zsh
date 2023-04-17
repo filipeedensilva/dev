@@ -1,0 +1,10 @@
+alias v="vim"
+alias vz="vim ~/.zshrc"
+alias cls="clear"
+alias src="source ~/.zshrc"
+alias ll="ls -l"
+alias dmon="~/scripts && ./dmonitor.sh"
+alias norm="norminette"
+alias vc="vim ~/.vimrc"
+alias cc="cc -Wall -Wextra -Werror"
+
