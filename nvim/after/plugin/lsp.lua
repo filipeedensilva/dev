@@ -1,10 +1,11 @@
 local lsp = require('lsp-zero').preset({})
+local lsp_config = require("lspconfig");
 
 lsp.ensure_installed({
   'clangd',
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
   vim.keymap.set('n', 'gd', function()
@@ -31,15 +32,15 @@ lsp.on_attach(function(client, bufnr)
     vim.diagnostic.goto_prev()
   end, opts)
 
-  vim.keymap.set('n', '<leader>vca', function()
+  vim.keymap.set('n', '<leader>ca', function()
     vim.lsp.buf.code_action()
   end, opts)
 
-  vim.keymap.set('n', '<leader>vrr', function()
+  vim.keymap.set('n', '<leader>rf', function()
     vim.lsp.buf.references()
   end, opts)
 
-  vim.keymap.set('n', '<leader>vrn', function()
+  vim.keymap.set('n', '<leader>rn', function()
     vim.lsp.buf.rename()
   end, opts)
 
@@ -55,6 +56,18 @@ require('lspconfig').lua_ls.setup({
         globals = { 'vim' },
       },
     },
+  },
+})
+
+lsp_config["dartls"].setup({
+  on_attach = on_attach,
+  root_dir = lsp_config.util.root_pattern('.git'),
+  settings = {
+    dart = {
+      updateImportsOnRename = true,
+      completeFunctionCalls = true,
+      showTodos = true,
+    }
   },
 })
 

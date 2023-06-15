@@ -49,12 +49,29 @@ return require('packer').startup(function(use)
 	}
 	use("eandrju/cellular-automaton.nvim")
 
-	use("water-sucks/darkrose.nvim")
-
 	use ("lukas-reineke/indent-blankline.nvim")
 
 	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
 		require("toggleterm").setup()
 	end}
 
+	use {
+		'numToStr/Comment.nvim',
+		config = function()
+			require('Comment').setup()
+		end
+	}
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+	}
+	use {
+		'akinsho/flutter-tools.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim',
+			'stevearc/dressing.nvim', -- optional for vim.ui.select
+		},
+	}
+	use ('dart-lang/dart-vim-plugin')
+	use ('cohama/lexima.vim')
   end)

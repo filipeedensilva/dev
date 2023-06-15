@@ -1,12 +1,25 @@
+" **************************************************************************** "
+"                                                                              "
+"                                             ________  ________   ___  ___    "
+"    f3kheader.vim                                 |  _____|_____   |  |       "
+"                                                    __/ |____| /_   /  /|_    "
+"    By: feden-pe <feden-pe@student.42lisboa.co      __      |  \    ___       "
+"                                                     _|     ___  \   \        "
+"    Created: 2023/06/06 19:05:06 by feden-pe      __     |_______\ __\ __     "
+"    Updated: 2023/06/06 19:08:44 by fede     |__|     |_______| |__| |__|     "
+"                                                                              "
+" **************************************************************************** "
+
+
 let s:asciiart = [
-			\"        :::      ::::::::",
-			\"      :+:      :+:    :+:",
-			\"    +:+ +:+         +:+  ",
-			\"  +#+  +:+       +#+     ",
-			\"+#+#+#+#+#+   +#+        ",
-			\"     #+#    #+#          ",
-			\"    ###   ########.fr    "
-			\]
+		\"  ________  ________   ___  ___",
+		\" |\  _____\|\_____  \ |\  \|\  \ ",
+		\" \ \  \__/ \|____|\ /_\ \  \/  /|_",
+		\"  \ \   __\      \|\  \\ \   ___  \ ",
+		\"   \ \  \_|     __\_\  \\ \  \\ \  \ ",
+		\"    \ \__\     |\_______\\ \__\\ \__\ ",
+		\"     \|__|     \|_______| \|__| \|__| "
+		\]
 
 let s:start		= '/*'
 let s:end		= '*/'
@@ -14,24 +27,24 @@ let s:fill		= '*'
 let s:length	= 80
 let s:margin	= 5
 
-let s:types		= {
-			\'\.c$\|\.h$\|\.cc$\|\.hh$\|\.cpp$\|\.hpp$\|\.php$\|\.dart':
-			\['/*', '*/', '*'],
-			\'\.htm$\|\.html$\|\.xml$':
-			\['<!--', '-->', '*'],
-			\'\.js$':
-			\['//', '//', '*'],
-			\'\.tex$':
-			\['%', '%', '*'],
-			\'\.ml$\|\.mli$\|\.mll$\|\.mly$':
-			\['(*', '*)', '*'],
-			\'\.vim$\|\vimrc$':
-			\['"', '"', '*'],
-			\'\.el$\|\emacs$':
-			\[';', ';', '*'],
-			\'\.f90$\|\.f95$\|\.f03$\|\.f$\|\.for$':
-			\['!', '!', '/']
-			\}
+let s:types = {
+    \ '\.c$\|\.h$\|\.cc$\|\.hh$\|\.cpp$\|\.hpp$\|\.php':
+    \ ['/*', '*/', '*'],
+    \ '\.htm$\|\.html$\|\.xml$':
+    \ ['<!--', '-->', '*'],
+    \ '\.js$':
+    \ ['//', '//', '*'],
+    \ '\.tex$':
+    \ ['%', '%', '*'],
+    \ '\.ml$\|\.mli$\|\.mll$\|\.mly$':
+    \ ['(*', '*)', '*'],
+    \ '\.vim$\|\vimrc$':
+    \ ['"', '"', '*'],
+    \ '\.el$\|\emacs$':
+    \ [';', ';', '*'],
+    \ '\.f90$\|\.f95$\|\.f03$\|\.f$\|\.for$':
+    \ ['!', '!', '/']
+    \}
 
 function! s:filetype()
 	let l:f = s:filename()
@@ -84,7 +97,7 @@ function! s:user()
 	endif
 	let l:user = $USER
 	if strlen(l:user) == 0
-		let l:user = "marvin"
+		let l:user = "filipeedensilva"
 	endif
 	return l:user
 endfunction
@@ -95,7 +108,7 @@ function! s:mail()
 	endif
 	let l:mail = $MAIL
 	if strlen(l:mail) == 0
-		let l:mail = "marvin@42.fr"
+		let l:mail = "filipeedensilva@gmail.com"
 	endif
 	return l:mail
 endfunction
@@ -144,7 +157,7 @@ function! s:stdheader()
 endfunction
 
 " Bind command and shortcut
-command! Stdheader call s:stdheader ()
-map <F1> :Stdheader<CR>
+command! F3Kheader call s:stdheader ()
+map <F2> :F3Kheader<CR>
 autocmd BufWritePre * call s:update ()
 

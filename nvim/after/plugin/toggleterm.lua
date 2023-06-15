@@ -13,8 +13,8 @@ toggleterm.setup({
 	start_in_insert = true,
 	insert_mappings = true,
 	persist_size = true,
-	direction = "vertical",
 	close_on_exit = true,
+	direction = "float",
 	shell = vim.o.shell,
 	float_opts = {
 		border = "curved",
