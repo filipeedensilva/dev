@@ -1,9 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -27,17 +21,26 @@ source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 #Aliases
 alias v="nvim"
 alias vz="nvim ~/.zshrc"
+alias vc="~/.config/nvim && nvim ."
 alias cls="clear"
 alias src="source ~/.zshrc"
 alias ll="ls -l"
-alias dmon="~/scripts && ./dmonitor.sh"
+alias dmon="sh ~/scripts/dmonitor.sh"
 alias norm="norminette"
 alias vv="nvim ~/.vimrc"
 alias ..="cd .."
 alias la="ls -a"
+alias ll="ls -l"
 alias lla="ls -la"
+alias ga="git add"
+alias gs="git status"
+alias gc="git commit -m"
+alias gp="git push"
+alias dr="dart run"
 
 alias fran="$HOME"/francinette/tester.sh
 alias paco="$HOME"/francinette/tester.sh
 
 alias francinette=/home/f3k/francinette/tester.sh
+
+export PATH="$PATH:/usr/lib/dart/bin"
