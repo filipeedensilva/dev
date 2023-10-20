@@ -2,7 +2,7 @@
 #Toggle on/off an external HDMI monitor, does not support audio over HDMI as it's pretending that it's DVI
 
 intern="eDP-1"
-extern="HDMI-1-4"
+extern="HDMI-1"
 
 extramonitor() {
 	case "$1" in

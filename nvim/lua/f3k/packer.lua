@@ -73,5 +73,12 @@ return require('packer').startup(function(use)
 		},
 	}
 	use ('dart-lang/dart-vim-plugin')
-	use ('cohama/lexima.vim')
+	use {
+		'lukas-reineke/headlines.nvim',
+		after = 'nvim-treesitter',
+		config = function()
+			require('headlines').setup()
+		end,
+	}
+	use ('windwp/nvim-autopairs')
   end)
