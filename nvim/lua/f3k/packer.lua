@@ -15,8 +15,28 @@ return require('packer').startup(function(use)
 
 	use ({ 'folke/tokyonight.nvim', as = 'tokyonight' })
 
-	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+	use({ 'nordtheme/vim', as = 'nord' })
+
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = function()
+			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+			ts_update()
+		end,}
 	use('nvim-treesitter/playground')
+	use('nvim-treesitter/nvim-treesitter-context')
+
+	use({
+		"folke/trouble.nvim",
+		config = function()
+			require("trouble").setup {
+				icons = false,
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			}
+		end
+	})
 
 	use('theprimeagen/harpoon')
 	use('mbbill/undotree')
@@ -81,4 +101,5 @@ return require('packer').startup(function(use)
 		end,
 	}
 	use ('windwp/nvim-autopairs')
+
   end)
