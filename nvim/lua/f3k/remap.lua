@@ -32,7 +32,3 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
-vim.keymap.set("n", "<Left>", '<cmd>echoe "Use h"<CR>')
-vim.keymap.set("n", "<Right>", '<cmd>echoe "Use l"<CR>')
-vim.keymap.set("n", "<Up>", '<cmd>echoe "Use k"<CR>')
-vim.keymap.set("n", "<Down>", '<cmd>echoe "Use j"<CR>')
