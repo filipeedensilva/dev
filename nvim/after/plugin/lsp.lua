@@ -8,8 +8,8 @@ lsp.ensure_installed({
 lsp.set_preferences({
     suggest_lsp_servers = false,
     sign_icons = {
-        error = 'E',
-        warn = 'W',
+        error = '❌',
+        warn = '⚠',
         hint = 'H',
         info = 'I'
     }

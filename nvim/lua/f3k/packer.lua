@@ -30,7 +30,7 @@ return require('packer').startup(function(use)
 		"folke/trouble.nvim",
 		config = function()
 			require("trouble").setup {
-				icons = false,
+				icons = true,
 				-- your configuration comes here
 				-- or leave it empty to use the default settings
 				-- refer to the configuration section below
@@ -71,10 +71,6 @@ return require('packer').startup(function(use)
 
 	use ("lukas-reineke/indent-blankline.nvim")
 
-	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-		require("toggleterm").setup()
-	end}
-
 	use {
 		'numToStr/Comment.nvim',
 		config = function()
@@ -101,5 +97,25 @@ return require('packer').startup(function(use)
 		end,
 	}
 	use ('windwp/nvim-autopairs')
+
+	use ('windwp/nvim-ts-autotag')
+
+	use ({'bluz71/vim-nightfly-colors', as = 'nightfly' })
+
+	use ('christoomey/vim-tmux-navigator')
+
+	use { "catppuccin/nvim", as = "catppuccin" }
+
+	-- use ('/home/f3k/.local/lib/python3.10/site-packages/powerline/bindings/vim')
+
+	use ('norcalli/nvim-colorizer.lua')
+
+	use({
+		"aurum77/live-server.nvim",
+		run = function()
+			require"live_server.util".install()
+		end,
+		cmd = { "LiveServer", "LiveServerStart", "LiveServerStop" },
+	})
 
   end)
