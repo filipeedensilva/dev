@@ -53,10 +53,11 @@ set -o shwordsplit
 write_hpp() {
 
 local name="$1"
+local upper=$(echo "$name" | tr '[:lower:]' '[:upper:]')
 
 	cat <<EOF > "$main_folder/includes/$name.hpp"
-#ifndef ${name}_HPP
-# define ${name}_HPP
+#ifndef ${upper}_HPP
+# define ${upper}_HPP
 
 # include <iostream>
 # include <string>
@@ -84,28 +85,23 @@ local name="$1"
 	cat <<EOF > "$main_folder/src/$name.cpp"
 #include "../includes/$name.hpp"
 
-$name::$name()
-{
+$name::$name() {
 	std::cout << "$name constructor called" << std::endl;
 }
 
-$name::$name(const $name &copy)
-{
+$name::$name(const $name &copy) {
 	std::cout << "$name copy constructor called" << std::endl;
 	// Don't forget to copy the variables here
 	*this = copy;
 }
 
-$name &$name::operator=(const $name &copy)
-{
-	(void)copy;
-	std::cout << "$name operator= called" << std::endl;
+$name &$name::operator=(const $name &copy) {
+	std::cout << "$name copy assignment operator called" << std::endl;
 	// Don't forget to copy the variables here
-	return *this;
+	return (*this);
 }
 
-$name::~$name()
-{
+$name::~$name() {
 	std::cout << "$name destructor called" << std::endl;
 }
 EOF
@@ -158,11 +154,8 @@ EOF
 
 write_main() {
     cat << EOF >> "$main_folder/src/main.cpp"
-#include <iostream>
-
-int main(void)
-{
-    return 0;
+int main(void) {
+	return (0);
 }
 EOF
 }
@@ -203,5 +196,4 @@ fi
 cd $main_folder
 make att
 cd ..
-
 
