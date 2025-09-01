@@ -45,6 +45,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Use bightnessctl to set brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -60,10 +64,18 @@ bindsym $sup+q kill
 
 bindsym $sup+l exec i3lock
 
-bindsym $sup+m exec flatpak run com.github.taiko2k.tauonmb
+bindsym $sup+m exec flatpak run org.kde.elisa
+
+## Use scrot to take screenshots
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launchers/type-2/style-5.rasi
+bindsym $mod+e exec --no-startup-id rofi -modi emoji -show emoji -theme ~/.config/rofi/launchers/type-2/style-5.rasi
+bindsym $mod+c exec --no-startup-id rofi -modi calc -show calc -no-show-match -no-sort -theme ~/.config/rofi/launchers/type-2/style-5.rasi
+bindsym $mod+w exec --no-startup-id /home/f3k/scripts/networkmanager_dmenu
+# bindsym $mod+w exec --no-startup-id sh -c 'networkmanager_dmenu >> /tmp/nmdmenu.log 2>&1'
+
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -97,11 +109,6 @@ bindsym $sup+v split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
@@ -119,13 +126,13 @@ bindsym $mod+a focus parent
 set $ws1 "Terminal"
 set $ws2 "Brave"
 set $ws3 "Music"
-set $ws4 "Discord"
-set $ws5 "Slack"
+set $ws4 "Slack"
+set $ws5 "Stremio"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws8 "Discord"
+set $ws9 "Steam"
+set $ws10 "CS2"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -134,10 +141,10 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -146,10 +153,10 @@ bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Move workspaces between monitors
 bindsym $mod+l move workspace to output right
@@ -157,7 +164,10 @@ bindsym $mod+h move workspace to output left
 
 assign [class="Alacritty"] $ws1
 assign [class="Brave-browser"] $ws2
-assign [class="com.github.taiko2k.tauonmb"] $ws3
+assign [class="elisa"] $ws3
+assign [class="discord"] $ws8
+
+for_window [class="VirtualBox Machine"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -210,15 +220,15 @@ bar {
 }
 
 exec_always ~/.config/polybar/launch.sh &
-exec_always feh --bg-fill ~/Pictures/luffy.jpg
+exec_always feh --bg-fill ~/Images/luffy.jpg
 
-exec_always ~/.screenlayout/laptop_right.sh &
+set $laptopscript ~/.screenlayout/laptop_right.sh
+
+exec_always $laptopscript
 
 bindsym $mod+F4  exec ~/.config/i3/toggle_sink.sh
 
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym $mod+F10  exec ~/.screenlayout/monitor_toogle.sh
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -226,14 +236,18 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 ## Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(`date +%Y-%m-%d_%H:%M:%S`.png)"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(`date +%Y-%m-%d_%H:%M:%S`.png)"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(`date +%Y-%m-%d_%H:%M:%S`.png)"
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
+## Swapping Caps Lock with Esc
+exec xmodmap -e "clear lock"
+exec xmodmap -e "keysym Caps_Lock = Escape"
 
 exec alacritty
 exec brave-browser

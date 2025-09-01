@@ -32,6 +32,7 @@ alias v="nvim"
 alias vz="v ~/.zshrc"
 alias vc="v ~/.config/nvim"
 alias vcf="v ~/.config"
+alias vi3="v ~/.config/i3"
 alias cls="clear"
 alias src="source ~/.zshrc"
 alias dmon="sh ~/scripts/dmonitor.sh"
@@ -57,9 +58,14 @@ alias ta="tmux a"
 export PATH="$PATH:/usr/lib/dart/bin"
 export LS_PRELOAD="~/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
 
+export PATH="$PATH:$HOME/scripts"
+
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 nitch
 
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share"
 
 export PATH=~/.scripts/cpp_init:$PATH

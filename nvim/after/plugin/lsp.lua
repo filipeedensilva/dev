@@ -2,7 +2,7 @@ local lsp = require('lsp-zero').preset({})
 local lsp_config = require("lspconfig");
 
 lsp.ensure_installed({
-  'clangd',
+  'clangd', 'yamlls'
 })
 
 lsp.set_preferences({

@@ -118,4 +118,10 @@ return require('packer').startup(function(use)
 		cmd = { "LiveServer", "LiveServerStart", "LiveServerStop" },
 	})
 
+	use ('lewis6991/gitsigns.nvim')
+
+	use ("folke/zen-mode.nvim")
+
+	use ('camdencheek/tree-sitter-dockerfile')
+
   end)
