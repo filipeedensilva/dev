@@ -1,0 +1,21 @@
+import = ["~/personal/alacritty/alacritty-theme/themes/themes/tokyo-night.toml"]
+
+[font]
+size = 12
+
+[font.normal]
+family = "MesloLGS NF"
+style = "SemiBold"
+
+# [font.offset]
+# x = 0
+# y = 0
+
+[window]
+decorations = "Full"
+opacity = 0.7
+
+[window.padding]
+x = 5
+y = 0
+

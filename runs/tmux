@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "⬇️ Downloading tmux"
+
+script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+source $script_dir/utils.sh
+
+if [[ $ID == "arch" ]]; then
+	execute sudo pacman -S --needed tmux
+else
+	execute sudo apt install tmux
+fi
+
+execute git clone https://github.com/ThePrimeagen/tmux-sessionizer.git $HOME/personal/tmux-sessionizer

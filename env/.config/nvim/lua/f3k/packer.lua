@@ -106,17 +106,7 @@ return require('packer').startup(function(use)
 
 	use { "catppuccin/nvim", as = "catppuccin" }
 
-	-- use ('/home/f3k/.local/lib/python3.10/site-packages/powerline/bindings/vim')
-
 	use ('norcalli/nvim-colorizer.lua')
-
-	use({
-		"aurum77/live-server.nvim",
-		run = function()
-			require"live_server.util".install()
-		end,
-		cmd = { "LiveServer", "LiveServerStart", "LiveServerStop" },
-	})
 
 	use ('lewis6991/gitsigns.nvim')
 

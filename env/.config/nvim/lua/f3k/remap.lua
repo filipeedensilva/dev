@@ -22,21 +22,15 @@ vim.keymap.set("n", "<leader>d", "\"_d")
 vim.keymap.set("v", "<leader>d", "\"_d")
 
 vim.keymap.set("n", "Q", "mzA;<ESC>`z")
-vim.keymap.set("n", "<C-s>", ":w<CR>:Ex<CR>", { silent = true })
+
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
-
-vim.keymap.set("n", "<a-h>", "^[^h")
-vim.keymap.set("n", "<a-t>", "^[^t")
-vim.keymap.set("n", "<a-n>", "^[^n")
-vim.keymap.set("n", "<a-s>", "^[^s")
+vim.keymap.set("n", "<leader><leader>", "<cmd>so<CR>");
 
 vim.keymap.set("n", "<Left>", "<Nop>", { silent = true })
 vim.keymap.set("n", "<Right>", "<Nop>", { silent = true })

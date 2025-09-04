@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+echo "⬇️ Downloading Alacritty"
+
+script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+source $script_dir/utils.sh
+
+execute git clone https://github.com/alacritty/alacritty.git $HOME/personal/alacritty
+
+execute curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+execute source "$HOME/.cargo/env"
+execute rustup override set stable
+execute rustup update stable
+
+if [[ $ID == "arch" ]]; then
+	execute sudo pacman -S --needed cmake freetype2 fontconfig pkg-config make libxcb libxkbcommon python gzip scdoc
+else
+	execute sudo apt install -y cmake g++ pkg-config libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3 gzip scdoc
+fi
+
+pushd $HOME/personal/alacritty > /dev/null
+execute cargo build --release
+execute sudo mkdir -p /usr/local/share/man/man1
+execute sudo mkdir -p /usr/local/share/man/man5
+execute scdoc < extra/man/alacritty.1.scd | gzip -c | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
+execute scdoc < extra/man/alacritty-msg.1.scd | gzip -c | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz > /dev/null
+execute scdoc < extra/man/alacritty.5.scd | gzip -c | sudo tee /usr/local/share/man/man5/alacritty.5.gz > /dev/null
+execute scdoc < extra/man/alacritty-bindings.5.scd | gzip -c | sudo tee /usr/local/share/man/man5/alacritty-bindings.5.gz > /dev/null
+popd > /dev/null
+
+execute git clone depth --1 https://github.com/alacritty/alacritty-theme.git $HOME/personal/alacritty/alacritty-theme

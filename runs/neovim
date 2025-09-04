@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+echo "⬇️ Downloading neovim"
+
+script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+source $script_dir/utils.sh
+
+if [[ $ID == "arch" ]]; then
+	execute sudo pacman -S --needed neovim cmake gettext lua
+else
+	execute sudo apt install cmake gettext lua5.1 liblua5.1-0-dev
+
+	execute git clone -b v0.11.4 https://github.com/neovim/neovim.git $HOME/personal/neovim
+
+	execute cd $HOME/personal/neovim
+	execute make CMAKE_BUILD_TYPE=RelWithDebInfo
+	execute sudo make install
+fi

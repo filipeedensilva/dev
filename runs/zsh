@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+echo "⬇️ Downloading zsh"
+
+script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+source $script_dir/utils.sh
+
+FONT_DIR="$HOME/.local/share/fonts"
+execute mkdir -p "$FONT_DIR"
+
+if [[ $ID == "arch" ]]; then
+	execute sudo pacman -S --needed zsh zsh-autocomplete
+else
+	execute sudo apt install zsh
+fi
+
+execute hash -r
+execute sudo chsh -s $(which zsh)
+
+execute git clone --depth 1 -- https://github.com/romkatv/powerlevel10k.git $HOME/personal/zsh/powerlevel10k
+execute git clone --depth 1 -- https://github.com/zsh-users/zsh-autosuggestions $HOME/personal/zsh/zsh-autosuggestions
+execute git clone --depth 1 -- https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/personal/zsh/zsh-syntax-highlighting
+
+execute wget -nc -P "$FONT_DIR" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+execute wget -nc -P "$FONT_DIR" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+execute wget -nc -P "$FONT_DIR" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+execute wget -nc -P "$FONT_DIR" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
