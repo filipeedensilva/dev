@@ -14,7 +14,7 @@ if [ -z "$DEV_ENV" ]; then
 	exit 0
 fi
 
-while [[ $# > 0 ]]; do
+while [[ $# -gt 0 ]]; do
 	if [[ $1 == "--dry" ]]; then
 		dry="1"
 	else

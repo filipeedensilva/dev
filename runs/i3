@@ -6,7 +6,12 @@ script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 source $script_dir/utils.sh
 
 if [[ $ID == "arch" ]]; then
-	execute sudo pacman -S --needed i3 i3-wm
+	execute sudo pacman -S --needed i3 i3-wm autoconf cairo fontconfig gcc libev libjpeg-turbo libxinerama libxkbcommon-x11 libxrandr pam pkgconf xcb-util-image xcb-util-xrm
 else
 	execute sudo apt install i3 i3-wm
 fi
+
+execute git clone https://github.com/Raymo111/i3lock-color.git $HOME/personal/i3lock-color
+
+execute pushd $HOME/personal/i3lock-color
+execute ./install-i3lock-color.sh
