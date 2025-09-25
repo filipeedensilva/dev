@@ -5,7 +5,7 @@ echo "⬇️ Downloading neovim"
 script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 source $script_dir/utils.sh
 
-if [[ $ID == "arch" ]]; then
+if [[ $OS == "arch" ]]; then
 	execute sudo pacman -S --needed neovim cmake gettext lua
 else
 	execute sudo apt install cmake gettext lua5.1 liblua5.1-0-dev

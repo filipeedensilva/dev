@@ -5,7 +5,7 @@ echo "⬇️ Downloading important libraries..."
 script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 source $script_dir/utils.sh
 
-if [[ $ID == "arch" ]]; then
+if [[ $OS == "arch" ]]; then
 	execute sudo pacman -S --needed ripgrep base-devel xclip jq python-pip xdotool xclip tree
 else
 	execute sudo apt install ripgrep build-essential xclip jq python3-pip xdotool xclip tree

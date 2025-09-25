@@ -8,7 +8,7 @@ source $script_dir/utils.sh
 FONT_DIR="$HOME/.local/share/fonts"
 execute mkdir -p "$FONT_DIR"
 
-if [[ $ID == "arch" ]]; then
+if [[ $OS == "arch" ]]; then
 	execute sudo pacman -S --needed zsh zsh-autocomplete
 else
 	execute sudo apt install zsh

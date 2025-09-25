@@ -25,28 +25,24 @@ zstyle :compinstall filename '/home/f3k/.zshrc'
 #Aliases
 alias v="nvim"
 alias vz="v ~/.zshrc"
-alias vc="v ~/.config/nvim"
-alias vcf="v ~/.config"
-alias vi3="v ~/.config/i3"
+alias vc="v ~/.config"
 alias src="source ~/.zshrc"
 alias norm="norminette"
-alias ..="cd .."
 alias la="ls -a"
 alias ll="ls -l"
 alias lla="ls -la"
-alias ga="git add"
-alias gst="git status"
-alias gc="git clone"
-alias gco="git checkout"
-alias gcm="git commit -m"
-alias gp="git push"
 
 export PATH="$PATH:$HOME/.local/scripts"
 
 export TERM="xterm-256color"
-export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share"
-
-export PATH=~/.scripts/cpp_init:$PATH
 
 source $HOME/personal/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh_profile
+
+# Setup Rust
+. "$HOME/.cargo/env"
+
+# Start Hyprland
+if [ "$(tty)" = "/dev/tty1" ]; then
+	echo "Starting Hyprland..."
+	exec Hyprland
+fi

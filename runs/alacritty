@@ -12,7 +12,7 @@ execute source "$HOME/.cargo/env"
 execute rustup override set stable
 execute rustup update stable
 
-if [[ $ID == "arch" ]]; then
+if [[ $OS == "arch" ]]; then
 	execute sudo pacman -S --needed cmake freetype2 fontconfig pkg-config make libxcb libxkbcommon python gzip scdoc
 else
 	execute sudo apt install -y cmake g++ pkg-config libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3 gzip scdoc

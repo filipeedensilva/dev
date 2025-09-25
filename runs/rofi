@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-echo "⬇️ Downloading rofi"
+echo "⬇️ Downloading rofi/wofi"
 
 script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 source $script_dir/utils.sh
 
-if [[ $ID == "arch" ]]; then
-	execute sudo pacman -S --needed rofi
+if [[ $OS == "arch" ]]; then
+	execute sudo pacman -S --needed wofi
 else
 	execute sudo apt install -y rofi
 fi

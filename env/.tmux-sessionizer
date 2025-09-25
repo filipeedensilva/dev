@@ -4,6 +4,6 @@ if [[ "$(pwd)" == $HOME/personal ]]; then
 	clear
 	return
 fi
-tmux neww -dn scratch
+tmux neww -dn zsh
 nvim .
 clear

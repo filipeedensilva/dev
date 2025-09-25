@@ -33,9 +33,9 @@ log() {
 
 execute() {
 	log "execute: $@"
-	if [[ $dry == "1" ]]; then
-		return
-	fi
+	# if [[ $dry == "1" ]]; then
+	# 	return
+	# fi
 	"$@"
 }
 
